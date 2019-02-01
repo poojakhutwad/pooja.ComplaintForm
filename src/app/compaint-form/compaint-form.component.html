@@ -1,0 +1,167 @@
+<form [formGroup]="this.complaintService.form" (ngSubmit)="onSubmit()">
+  <div class="container-fluid" style="width: 600px;">
+    <div class="form-group">
+      <div class="row justify-content-md-center">
+          <img src="/assets/Images/images.jpeg" alt="Complaint">
+      </div>
+    </div>
+  
+    <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <p>Please fill out the following form with your complaint.we will review your request and follow up 
+          with you as soon as possible.
+        </p>
+      </div>
+    </div>
+    </div>
+
+  <input type="hidden" formControlName="$key">
+  <div  class="form-group">
+    <label class="labelFont">Name</label>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="firstName" [ngClass]="{'is-invalid':submitted && formControls.firstName.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.firstName.errors">
+        <small> Please enter firstname.</small></div>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" formControlName="lastName" [ngClass]="{'is-invalid':submitted && formControls.firstName.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.lastName.errors">
+           <small> Please enter Lastname.</small></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+         <small class="small">First Name</small>
+      </div>
+      <div class="col">
+          <small class="small">Last Name</small>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="form-group">
+            <label class="labelFont">Email</label>
+    <div class="row">
+      <div class="col">
+       <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid':submitted && formControls.email.errors}">
+       <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors">
+        <small *ngIf="formControls.email.errors.required">email is required.</small>
+        <small *ngIf="formControls.email.errors.pattern">Please enter valid email.</small>
+      </div>
+       </div>
+      </div>
+    </div>
+
+  <div class="form-group">
+    <label class="labelFont">Phone</label>
+    <div class="row">
+      <div class="col">
+       <input type="text" class="form-control" formControlName="phone" [ngClass]="{'is-invalid':submitted && formControls.phone.errors}">
+    </div>
+    </div>
+    <div class="row">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.phone.errors">
+         <small *ngIf="formControls.phone.errors.required">Phone number is required.</small>
+         <small *ngIf="formControls.phone.errors.minlength">Please enter valid phone number.</small>
+        </div>
+      </div>
+  </div>
+  
+  
+  <div class="form-group">
+    <label class="labelFont">Address</label>
+    <div class="row">
+      <div class="col">
+       <input type="text" class="form-control" formControlName="address" [ngClass]="{'is-invalid':submitted && formControls.address.errors}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="invalid-feedback" *ngIf="submitted && formControls.address.errors">
+       <small *ngIf="formControls.address.errors.required">Address is required.</small>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col">
+         <input type="text" class="form-control" formControlName="address1" [ngClass]="{'is-invalid':submitted && formControls.address1.errors}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.address1.errors">
+         <small *ngIf="formControls.address1.errors.required">Address is required.</small>
+        </div>
+      </div>
+    <br>
+
+	  <div class="row">
+		  <div class="col">
+        <input type="text" class="form-control" formControlName="city" [ngClass]="{'is-invalid':submitted && formControls.city.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.city.errors">
+          <small *ngIf="formControls.city.errors.required">City is required.</small>
+          <small *ngIf="formControls.city.errors.maxlength">Please enter valid City.</small>
+        </div>
+      </div>
+		  <div class="col">
+			  <select class="custom-select" formControlName="state" [ngClass]="{'is-invalid':submitted && formControls.state.errors}" style="height:30px; border-radius: unset; font-size: x-small;">
+				  <option *ngFor="let value of states">{{value}}</option>     
+        </select>
+        <div class="invalid-feedback" *ngIf="submitted && formControls.state.errors">
+          <small *ngIf="formControls.state.errors.required">State is required.</small>
+         </div>
+		  </div>
+		  <div class="col">
+			  <input type="text" class="form-control" formControlName="zipCode" [ngClass]="{'is-invalid':submitted && formControls.zipCode.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.zipCode.errors">
+          <small *ngIf="formControls.zipCode.errors.required">ZipCode is required.</small>
+          <small *ngIf="formControls.zipCode.errors.maxlength">Please enter valid ZipCode.</small>
+        </div>
+      </div>
+	  </div>
+  
+	  <div class="row">
+		  <div class="col">
+        <small class="small">City</small>
+		  </div>
+		  <div class="col">
+			  <small class="small">State</small>
+		  </div>
+		  <div class="col">
+			  <small class="small">ZIP Code</small>
+		  </div>
+	  </div>
+  </div>
+  
+ 
+  <div class="form-group">
+      <label class="labelFont">Please describe the incident you would like to report.</label>
+      <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10" style="height: 75px;" formControlName="description" [ngClass]="{'is-invalid':submitted && formControls.description.errors}"></textarea>
+      <div class="invalid-feedback" *ngIf="submitted && formControls.description.errors">
+        <small *ngIf="formControls.description.errors.required">description is required.</small>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+      <label class="labelFont">How would you like to see this incident resolved?</label>
+      <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="10" style="height: 75px;" formControlName="resolvedIssue" [ngClass]="{'is-invalid':submitted && formControls.resolvedIssue.errors}"></textarea>
+      <div class="invalid-feedback" *ngIf="submitted && formControls.resolvedIssue.errors">
+        <small *ngIf="formControls.resolvedIssue.errors.required">Comment is required.</small>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="row justify-content-md-center">
+    <button  class="btn btn-primary"  type="submit" style="height: 25px;font-size: x-small;border-radius: initial;">Submit</button>
+    </div>
+  </div>
+</div>
+<div class="alert alert-info"  *ngIf="showSuccessMessage">
+  Data gets Submitted to Database.
+</div>
+</form>

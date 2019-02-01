@@ -1,0 +1,13 @@
+.form-control{
+    height: 30px;
+    border-radius: unset;
+    font-size: x-small;
+}
+
+.labelFont{
+    font-size: x-small;
+}
+
+.small{
+    font-size: 55%;
+}
